@@ -1,0 +1,16 @@
+\section{Backend-Mechanics}
+The above example showed a linear transformation of normally distributed random variables (gaussians). We observed that the resulting density was again normally distributed. The rules for such transformations are straightforward but not easily generalizable. Instead of specifying special rules sympy-stats chooses to rely on SymPy's powerful integration engine. Every statistical statement like P(X $\ge$ Y) internally produces a complex SymPy integral
+
+LaTeX of integral from last section
+
+This allows for the representation of any random variable whose probability density can be written down as a SymPy expression. Built-in examples exist for common distributions (Beta, Exponential, Uniform, etc....)
+
+The same framework of RandomSymbols embedded in expressions and statistical functions (like E, P, Density) works well for other types of random variables. We have implemented discrete random variables such as dice and coins and multivariate normal random variables, often used in statistical research. In each case sympy-stats relies on the mechanics of other projects to provide computational backends. Discrete random expressions create Python generator expressions much like work done by XXX. MVN expressions create SymPy Matrix
+Expressions.
+
+\section{Abstraction}
+Many problems are too complex for the type of analytic solution we saw in section \ref{sec:MotivatingExample}. The integrals produced by sympy-stats may be too complex for the integration backend. It is important to recognize that this case is not necessarily a failure.
+
+In such a case we may choose to improve the integration code or even to write a completely different backend, perhaps one that uses sampling to compute sample means and variances. This backend decision is separated from the sympy-stats' procedure to design random expressions using SymPy. The work done in sectgino \ref{sec:MotivatingExample} is orthogonal to the computational implementation.
+
+We have introduced random expressions as a new computational construct which may be solved through a variety of methods. This layer of abstraction separates the engineering lab from computational and algorithmic details where statistical problems are considered.
