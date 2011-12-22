@@ -1,6 +1,6 @@
 \section{Example 2: Data Assimilation}
 
-In the last section we motivated the use of random variables through fun examples involving discrete random variables, in particular six sided dice. These problems were solved internally by constructing and runninng through iterators as was done in the work by []. In this section we will consider continuous random variables. Instead of iterating through the continuum of possible values we will generate and solve integral expressions. We will see that while the
+In the last section we motivated the use of random variables through simple examples involving discrete random variables, in particular six sided dice. These problems were solved internally by constructing and running through iterators as was done in the work by []. In this section we will consider continuous random variables. Instead of iterating through the continuum of possible values we will generate and solve integral expressions. We will see that while the
 backend mechanics have been completely changed, the method of setting up a statistical problem remains unchanged. This is a theme upon which we will elaborate in the following sections. 
 
 We consider the problem of data assimilation. On a hot summer day we guess the temperature outside as being about 30C. We're uncertain of this guess so we add on a $\pm3$. We model this with a normal random variable
@@ -9,9 +9,12 @@ We consider the problem of data assimilation. On a hot summer day we guess the t
 >>> T = Normal(30, 3)
 \end{lstlisting}
 
-As in the last section we may ask questions such as $P(T>33)$. These produce integral expressions 
-$$\int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x_{3} -30\right)^{2}}}{6 \sqrt{\pi}}\, dx_{3}$$
-which are then solved using the SymPy integration engine to produce numeric results $P(T>33) = - \frac{1}{2} \operatorname{erf}{\left (\frac{1}{2} \sqrt{2} \right )} + \frac{1}{2} = 0.15866$
+As in the last section we may ask questions such as $P(T>33)$. These produce integral expressions which are then solved using the SymPy integration engine to produce numeric results.
+\begin{eqnarray*}
+P(T>33) & = & \int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x_{3} -30\right)^{2}}}{6 \sqrt{\pi}}\, dx_{3} \\
+& = & - \frac{1}{2} \operatorname{erf}{\left (\frac{1}{2} \sqrt{2} \right )} + \frac{1}{2} \\
+& = & 0.15866
+\end{eqnarray*}
 
 If we are unsatisfied with this single estimate of the temperature we may decide to measure with a thermometer. Our thermometer is difficult to read however (the lines are spaced closely together) and so we understand that our observation will include some noise. 
 

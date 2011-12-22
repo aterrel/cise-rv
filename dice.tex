@@ -1,11 +1,6 @@
-\section{Introductory Example - Dice}
+\section{Example 1 - Dice}
 
-SymPy is a symbolic algebra system embedded in the Python programming language. This means that in addition to numeric variables like $x = 3$ it can also manipulate symbolic variables
-
-\begin{lstlisting}
->>> x = Symbol('x', positive=True, integer=True)
-\end{lstlisting}
-
+SymPy is a symbolic algebra system embedded in the Python programming language. This means that in addition to numeric variables like $x = 3$ it can also manipulate symbolic variables $ x = $Symbol$('x')$.
 SymPy now also includes a random variable type which can take on a range of values, each with a certain probability 
 
 \begin{lstlisting}
@@ -14,7 +9,7 @@ SymPy now also includes a random variable type which can take on a range of valu
 
 X represents the value of a single die roll. It can take on the values $1,2,3,4,5$ or $6$, each with probability $\frac{1}{6}$. In general these variables act like normal symbolic variables and can participate in normal mathematical expressions. 
 
-Random variables are brought out when one of the statistical operators, (P, E, var, Density, Given, Where) are used at which point SymPy turns the sympy random expression (like Z) into some computed result. 
+Random variables are brought out when one of the statistical operators, (P, E, var, Density, Given, Where) are used at which point SymPy turns the sympy random expression (like 2*X+Y) into some computed result. 
 
 \begin{lstlisting}
 >>> X = Die(6)
