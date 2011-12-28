@@ -1,16 +1,73 @@
-\section{Example 1: Dice}
+\section{Example 1 - Dice}
 
-SymPy is a symbolic algebra system embedded in the Python programming language. This means that in addition to numeric variables like $x = 3$ it can also manipulate symbolic variables $ x = $Symbol$('x')$.
-SymPy now also includes a random variable type which can take on a range of values, each with a certain probability 
+Random variables are formally functions on probability spaces.  Practically, they
+represent ranges of values each with a certain probability.  SymPy is a
+symbolic algebra system embedded in the Python programming language. In
+addition to numeric variables like $x = 3$ it can also manipulate symbolic
+variables $ x = $Symbol$('x')$. SymPy now includes a random variable type which
+we can use to represent uncertainity in variables.  For example take a simple
+six--sided die.
 
 \begin{lstlisting}
+>>> from sympy.stats import *
 >>> X = Die(6) # a six sided die
 \end{lstlisting}
 
-X represents the value of a single die roll. It can take on the values $1,2,3,4,5$ or $6$, each with probability $\frac{1}{6}$. In general these variables act like normal symbolic variables and can participate in normal mathematical expressions. 
+X represents the value of a single die roll. It can take on the values
+$1,2,3,4,5$ or $6$, each with probability $\frac{1}{6}$. In general these
+variables act like normal symbolic variables and can participate in normal
+mathematical expressions. For example, if you want to modify a dice roll by a
+handicap, you can just add an integer to it.
 
-Random variables are brought out when one of the statistical operators, (P, E, var, Density, Given, Where) are used at which point SymPy turns the sympy random expression (like 2*X+Y) into some computed result. 
+\begin{lstlisting}
+>>> mod_X = X + 3
+\end{lstlisting}
 
+While we use the {\tt Die} function above as a syntactic sugar, one can
+represent any finite probability space by providing the density function, a map
+from value to probability summing to one, and a symbol name, a default dummy is
+provided.  For example, we could have written:
+\begin{lstlisting}
+>>> from sympy import Rational
+>>> prob = Rational(1, 6)
+>>> density_map = {1:prob, 2:prob, 3:prob, 4:prob, 5:prob, 6:prob}
+>>> X = FiniteRV(density_map, 'die0' )
+\end{lstlisting}
+
+The difference between a random variables and a normal symbol can be seen when
+using statistical operators, see Table~\ref{tab:stat_ops}. Here SymPy turns
+expressions, e.g. {\tt 2*X + 4}, into some computed result. Additionally,
+sometimes you need to augment the underlying probability space based on
+knowledge of the space or with respect to an event, see Table~\ref{tab:cond_ops}.
+
+\begin{table}[h]
+\begin{tabular}{|lll|}
+\hline
+Operators & SymPy function & example\\ \hline
+probability & {\tt P} & {\tt P(X < 3)}  -$> 1/3$\\ \hline
+expectation & {\tt E} & {\tt E(X + 3)}  -$> 13/2$ \\ \hline
+variance & {\tt var} & {\tt var(X + 3)} -$> 35/12$\\ \hline
+density & {\tt var} & {\tt Density(X + 3)}  -$> \{4: 1/6, 5: 1/6, 6: 1/6,$ \\
+            & & \phantom{Density(X+3)  -$> \{$ } $\quad 7: 1/6,  8: 1/6, 9: 1/6\}$ \\ \hline
+\end{tabular}
+\label{tab:stat_ops}
+\caption{Operators over expressions using random variables}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|lll|}
+\hline
+Condition & SymPy function & example\\ \hline
+give an expression a value & {\tt Given} & {\tt Given(X < 3)} \\ \hline
+set the value of an expression & {\tt Where} & {\tt Where(X < 3)} \\ \hline
+\end{tabular}
+\label{tab:cond_ops}
+\caption{Conditions to change the underlying probability space}
+\end{table}
+
+Now that we have a few basic operations on expression we can ask a few more
+interesting questions. For example, what is the probabilities related to two
+dice rolls:
 \begin{lstlisting}
 >>> X = Die(6)
 >>> Y = Die(6)
@@ -21,10 +78,17 @@ Random variables are brought out when one of the statistical operators, (P, E, v
 {-1: 1/2, 1: 1/2}
 >>> E(X+Y) # expected value of the sum of two dice
 7
->>> P(Y>4) 
+>>> P(Y>4)
 1/3
 >>> P(X+Y>=10, X<=4) # conditional probability X+Y>=10 given that X<=4
 1/6
+>>> Where(2*X < 8) # the set of values that twice a dice roll is less than
+8
+Domain: Or(die4 == 1, die4 == 2, die4 == 3)
 \end{lstlisting}
 
-By introducing a random variable type into the SymPy algebraic system we have created a language for modeling and querying symbolic statistical systems. 
+By introducing a random variable type into the SymPy algebraic system, we have
+created a language for modeling and querying symbolic statistical systems.
+While these simple examples using dice are minimal, they are the basis for more
+sophisticated examples.  Even with these simple operations, modeling discrete
+systems become a simple readable process.
