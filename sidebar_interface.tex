@@ -1,0 +1,32 @@
+\subsection{Sidebar - Statistical Functions}
+
+Random variables may be formed either by specifying probability density functions or by using one of the several builtin classes i.e. 
+\begin{lstlisting}
+>>> X = Normal(0,1) # Normal random variable with mean 0, standard deviation 1
+>>> Y = Exponential(5) # Exponential random variable with rate 5
+>>> D = Die(6) # A six sided die
+\end{lstlisting}
+
+Complex expressions and conditions are built up in SymPy I.e.
+\begin{lstlisting}
+>>> expr = 2*X + Y
+>>> cond = X>0
+\end{lstlisting}
+
+The following functions may be used to make queries:
+
+\begin{lstlisting}
+>>> E(expr) # Expectation Value of an expression
+>>> var(expr) # Variance of an expression
+>>> P(cond) # Probability of an event
+>>> Density(expr) # The probability density function (pdf) of an expression
+>>> Sample(expr) # A single realization of the given expression
+>>> Where(cond) # A domain of possible values where the condition is true
+>>> Given(expr, cond) - A new random expression conditioned on cond being true
+\end{lstlisting}
+
+The functionality of the last function allows for more complex queries such as 
+\begin{lstlisting}
+>>> P(X>1, X>0) - Probability of X>1 given that we already know X>0
+\end{lstlisting}
+

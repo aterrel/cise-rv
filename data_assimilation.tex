@@ -39,7 +39,7 @@ We now have two pieces of information on the same intrinsic value. We have $T$, 
 
 After we make this measurement how should our final estimate of the temperature change? We have the original estimate, $30C \pm 3C$, and the new measurement $26C \pm 1.5C$. We could take the thermometer’s reading because it is more precise but this doesn’t use the original information at all. The old measurement still has useful information and it would be best to cleanly assimilate the new bit of data $(26C \pm 1.5C)$ into our prior understanding $(30C \pm 3C)$
 
-This is the problem of Data Assimilation. We want to assimilate a new meaurement (data) into our previous understanding (prior) to form a new and better-informed understanding (posterior). Really, we want to compute $T' = T$ given observation $= 26$. We compute this in SymPy as follows
+This is the problem of Data Assimilation. We want to assimilate a new measurement (data) into our previous understanding (prior) to form a new and better-informed understanding (posterior). Really, we want to compute $T' = T$ given observation $= 26$. We compute this in SymPy as follows
 
 \begin{lstlisting}
 >>> T_posterior = Given(T, Eq(observation, 26))

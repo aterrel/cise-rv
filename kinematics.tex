@@ -7,7 +7,7 @@ Consider shooting a cannon ball off of a cliff with a certain muzzle velocity, a
 \centering
 \includegraphics[width=.55\textwidth]{images/kinematics}
 \vspace{-0pt}
-\caption{Varibles involved in shooting a cannon ball from a cliff}
+\caption{Variables involved in shooting a cannon ball from a cliff}
 \label{fig:kinematics}
 \vspace{00pt}
 \end{figure}
@@ -46,7 +46,7 @@ x_f = \frac{250}{49} + \frac{50}{49} \sqrt{123} = 16.4189...
 
 The expression in Eqn. \ref{eqn:kinematics_symbolic} serves two purposes. Because it is a full description of the problem it can provide insight as to the relation of the variables to the result. It also serves as a staging ground to produce the numeric solution in Eqn. \ref{eqn:kinematics_numeric}. Once the mathematical model has been described no further conceptual work is necessary on the part of the programmer to produce numeric results. 
 
-\subsection{statistics}
+\subsection{Adding Uncertainty}
 
 We now consider the statistical problem. Imagine that we are uncertain about the initial height of the cannon and that rather than knowing a precise value $y_0 = 10$ we instead had a distribution $y_0 \sim \N{10}{1}$. Due to this uncertainty we can no longer ask for the precise value of $x_f$ but may instead choose to ask for the expectation value, variance, or even the full distribution. 
 
@@ -73,7 +73,7 @@ $$\textrm{var}(x_f) = .2044...$$
 
 In principle we could ask for the full analytically computed density of $x_f$ although the complexity prohibits any meaningful insight. 
 
-\subsection{complex problems}
+\subsection{Dealing with Complexity}
 
 Imagine now a more difficult problem where more of the variables in our model were uncertain
 \begin{lstlisting}
@@ -87,7 +87,7 @@ Our queries may also become more complex such as \textit{what is the probability
 \end{lstlisting}
 Solving the resultant integral however is substantially more challenging.
 
-For situations like these exact solutions are often infeasible and monte carlo codes are built around the problem. Because this problem statement is now cleanly separated from the solution code it was trivial to connect a simple sampling engine onto SymPy stats allowing all such queries to be approximated using a simple syntax
+For situations like these exact solutions are often infeasible and Monte Carlo codes are built around the problem. Because this problem statement is now cleanly separated from the solution code it was trivial to connect a simple sampling engine onto SymPy stats allowing all such queries to be approximated using a simple syntax
 \begin{lstlisting}
 >>> P(theta>pi/4,  xf>16, samples=10000)
 0.3428
