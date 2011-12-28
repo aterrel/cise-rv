@@ -1,54 +1,44 @@
 \section{Example 1 - Dice}
+%SymPy is a symbolic algebra system embedded in the Python programming language.
 
-Random variables are formally functions on probability spaces.  Practically, they
-represent ranges of values each with a certain probability.  SymPy is a
-symbolic algebra system embedded in the Python programming language. In
-addition to numeric variables like $x = 3$ it can also manipulate symbolic
-variables $ x = $Symbol$('x')$. SymPy now includes a random variable type which
-we can use to represent uncertainity in variables.  For example take a simple
-six--sided die.
+Formally random variables are functions on probability spaces.  Practically, they represent ranges of values, each with a certain probability.  In
+addition to numeric variables like $x = 3$, SymPy can also manipulate symbolic
+variables, $x = $Symbol$('x')$. SymPy now includes a random variable type which
+we can use to represent uncertainity in variables.  For example we can declare and ask questions about a simple six--sided dice.
 
 \begin{lstlisting}
 >>> from sympy.stats import *
 >>> X = Die(6) # a six sided die
+>>> Y = Die(6) # a six sided die
+>>> P(X>3) # probability that X is greater than 3
+1/2
+>>> E(X+Y) # expectation of the sum of two dice
+7
 \end{lstlisting}
 
 X represents the value of a single die roll. It can take on the values
 $1,2,3,4,5$ or $6$, each with probability $\frac{1}{6}$. In general these
 variables act like normal symbolic variables and can participate in normal
-mathematical expressions. For example, if you want to modify a dice roll by a
-handicap, you can just add an integer to it.
+mathematical expressions. For example, if you want to modify a die roll by a
+handicap, you can add an integer to it.
 
 \begin{lstlisting}
 >>> mod_X = X + 3
 \end{lstlisting}
 
-While we use the {\tt Die} function above as a syntactic sugar, one can
-represent any finite probability space by providing the density function, a map
-from value to probability summing to one, and a symbol name, a default dummy is
-provided.  For example, we could have written:
-\begin{lstlisting}
->>> from sympy import Rational
->>> prob = Rational(1, 6)
->>> density_map = {1:prob, 2:prob, 3:prob, 4:prob, 5:prob, 6:prob}
->>> X = FiniteRV(density_map, 'die0' )
-\end{lstlisting}
-
-The difference between a random variables and a normal symbol can be seen when
-using statistical operators, see Table~\ref{tab:stat_ops}. Here SymPy turns
-expressions, e.g. {\tt 2*X + 4}, into some computed result. Additionally,
-sometimes you need to augment the underlying probability space based on
-knowledge of the space or with respect to an event, see Table~\ref{tab:cond_ops}.
+The difference between a random variable and a normal symbol can be seen when
+using the statistical operators described in Table~\ref{tab:stat_ops}. 
+Here SymPy turns statistical expressions like {\tt E(2*X + 4)} into a computed result. Additionally, one can compute statistics of the expression conditioned on additional knowledge as in Table~\ref{tab:cond_ops}.
 
 \begin{table}[h]
 \begin{tabular}{|lll|}
 \hline
 Operators & SymPy function & example\\ \hline
-probability & {\tt P} & {\tt P(X < 3)}  -$> 1/3$\\ \hline
-expectation & {\tt E} & {\tt E(X + 3)}  -$> 13/2$ \\ \hline
+probability & {\tt P} & {\tt P(X > 3)}  -$> 1/2$\\ \hline
+expectation & {\tt E} & {\tt E(2*X)}  -$> 7$ \\ \hline
 variance & {\tt var} & {\tt var(X + 3)} -$> 35/12$\\ \hline
-density & {\tt var} & {\tt Density(X + 3)}  -$> \{4: 1/6, 5: 1/6, 6: 1/6,$ \\
-            & & \phantom{Density(X+3)  -$> \{$ } $\quad 7: 1/6,  8: 1/6, 9: 1/6\}$ \\ \hline
+density & {\tt var} & {\tt Density(2*X)}  -$> \{2: 1/6,\; 4: 1/6,\; 6: 1/6,$ \\
+            & & \phantom{Density(X+3)  -$> \{$ } $\quad 8: 1/6,\; 10: 1/6,\; 12: 1/6\}$ \\ \hline
 \end{tabular}
 \label{tab:stat_ops}
 \caption{Operators over expressions using random variables}
@@ -57,17 +47,27 @@ density & {\tt var} & {\tt Density(X + 3)}  -$> \{4: 1/6, 5: 1/6, 6: 1/6,$ \\
 \begin{table}[h]
 \begin{tabular}{|lll|}
 \hline
-Condition & SymPy function & example\\ \hline
-give an expression a value & {\tt Given} & {\tt Given(X < 3)} \\ \hline
-set the value of an expression & {\tt Where} & {\tt Where(X < 3)} \\ \hline
+Explanation & SymPy function & example\\ \hline
+Conditional random variable & {\tt Given} & {\tt Xp = Given(X, X < 3)} \\ \hline
+Conditional density & {\tt Density} & {\tt Density(X, X > 3) } -$> \{4: 1/3,\; 5: 1/3,\; 6: 1/3\}$ \\ \hline
+Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } -$> 5$ \\ \hline
 \end{tabular}
 \label{tab:cond_ops}
-\caption{Conditions to change the underlying probability space}
+\caption{Conditional operators over random expressions}
 \end{table}
 
-Now that we have a few basic operations on expression we can ask a few more
-interesting questions. For example, what is the probabilities related to two
-dice rolls:
+While we use the {\tt Die} function above as a syntactic sugar, one can
+represent any probability space by providing the density function, a map
+from value to probability summing to one. For example, we could define a fair coin as follows:
+\begin{lstlisting}
+>>> density_map = {'heads':.5, 'tails':.5}
+>>> coin = FiniteRV(density_map)
+\end{lstlisting}
+
+Now that we know how to declare random variables and ask statistical questions we begin to leverage SymPy to model more complex statistical problems. We finish this section with more complex dice examples and follow up in the following sections with real-world examples.
+
+\comment{MR: I would be happy getting rid of these additional examples. I don't think they add much and I'd rather the reader move on.}
+
 \begin{lstlisting}
 >>> X = Die(6)
 >>> Y = Die(6)
@@ -86,6 +86,7 @@ dice rolls:
 8
 Domain: Or(die4 == 1, die4 == 2, die4 == 3)
 \end{lstlisting}
+
 
 By introducing a random variable type into the SymPy algebraic system, we have
 created a language for modeling and querying symbolic statistical systems.
