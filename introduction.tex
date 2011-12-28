@@ -1,19 +1,21 @@
 \section{Introduction}
 
-{\bf blab about symbolics}
-We note three increasing trends of scientific computing
-\begin{enumerate*}
-\item Problems are becoming more complex
-\item Computational infrastructure is requiring more attention to detail
-\item The average programmer is coming from a less technical background
-\end{enumerate*}
+Real world simulations require not only the physical models that currently
+dominate scientific computing but also the encapsulation of uncertainty, that
+is the use of statistics.  Unfortunately, the difficulty of implementing the
+physical model often takes most of the development efforts and adding
+uncertainty to the models is yet another axis of requirements.
 
-That is we need to solve more complex science problems on tricker architectures given less specialized users. To solve this issue we look towards adding additional layers of abstraction in the process of describing problems. For example we no longer ask users to write high performance matrix code, instead we use LAPACK. A layer of abstraction a bit higher in the process is the use of symbolic mathematics.
+To address this challenge, we present the use of random variables at the
+symbolic level with several examples of their use.  Just as many domain
+specific languages are able to use symbolic methods to represent problems and
+generate implementations, we are able to add statistics to a physical model by
+augmenting the language such that the variables involved represent the
+uncertainty.
 
-Commercial software such as Mathematica and Maple exist to aid in these problems. Unfortunately due to their closed nature it is difficult to integrate them into existing code bases.
-
-{\bf Blab about statistics}
-Society is starting to care about uncertainty.
-
-We introduce random variable types into SymPy allowing high level and intuitive expression of statistical problems. We show how these expressions may then be compiled to a lower-level representation and computed to obtain results in laboratory problems.
-
+Below we give three example of increasing complexity that use the random
+variable capabilities in SymPy, a popular symbolics package for the Python
+programming language.  The first dice example gives an example to reaquaint the
+reader with some basic statistics.  Second we have an example of modeling
+temperatures and assimilating the physical model with data
+measurements. Finally, we give a larger dynamic example from ballistics.
