@@ -1,9 +1,9 @@
 \section{Example 2: Data Assimilation}
 
-In the last section we motivated the use of random variables through simple examples involving discrete random variables, in particular six sided dice. These problems were solved internally by constructing and running through iterators as was done in the work by []. In this section we will consider continuous random variables. Instead of iterating through the continuum of possible values we will generate and solve integral expressions. We will see that while the
+In the last section we motivated the use of random variables through simple examples involving discrete random variables, in particular six sided dice. These problems were solved internally by constructing and running through iterators as was done in the work by \cite{Erwig2006}. In this section we will consider continuous random variables. Instead of iterating through the continuum of possible values we will generate and solve integral expressions. We will see that while the
 backend mechanics have been completely changed, the method of setting up a statistical problem remains unchanged. This is a theme upon which we will elaborate in the following sections. 
 
-We consider the problem of data assimilation. On a hot summer day we guess the temperature outside as being about 30C. We're uncertain of this guess so we add on a $\pm3$. We model this with a normal random variable
+We consider the problem of data assimilation. On a hot summer day we guess the temperature outside to be about 30C. We're uncertain of this guess so we add on a $\pm3$. We model this estimate with a normal random variable
 
 \begin{lstlisting}
 >>> T = Normal(30, 3)
@@ -23,9 +23,7 @@ If we are unsatisfied with this single estimate of the temperature we may decide
 >>> observation = T + noise
 \end{lstlisting}
 
-We measure a value of $26C$ and record this as data.
-
-We now have two pieces of information on the same intrinsic value. We have $T$, our \textit{prior} understanding and our new data. We plot them both in Fig. \ref{fig:DA_data}. 
+We measure a value of $26C$ and record this as data. We now have two pieces of information on the same intrinsic value. We have $T$, our \textit{prior} understanding and our new data. We plot them both in Fig. \ref{fig:DA_data}. 
 
 \begin{figure}[ht]
 \vspace{-0pt}
@@ -37,7 +35,7 @@ We now have two pieces of information on the same intrinsic value. We have $T$, 
 \vspace{00pt}
 \end{figure}
 
-After we make this measurement how should our final estimate of the temperature change? We have the original estimate, $30C \pm 3C$, and the new measurement $26C \pm 1.5C$. We could take the thermometer’s reading because it is more precise but this doesn’t use the original information at all. The old measurement still has useful information and it would be best to cleanly assimilate the new bit of data $(26C \pm 1.5C)$ into our prior understanding $(30C \pm 3C)$
+After we make this measurement how should our final estimate of the temperature change? We have the original estimate, $30C \pm 3C$, and the new measurement $26C \pm 1.5C$. We could take the thermometer's reading because it is more precise but this doesn't use the original information at all. The old measurement still has useful information and it would be best to cleanly assimilate the new bit of data $(26C \pm 1.5C)$ into our prior understanding $(30C \pm 3C)$
 
 This is the problem of Data Assimilation. We want to assimilate a new measurement (data) into our previous understanding (prior) to form a new and better-informed understanding (posterior). Really, we want to compute $T' = T$ given observation $= 26$. We compute this in SymPy as follows
 

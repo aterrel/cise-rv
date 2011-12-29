@@ -11,7 +11,7 @@ Consider shooting a cannon ball off of a cliff with a certain muzzle velocity, a
 \label{fig:kinematics}
 \vspace{00pt}
 \end{figure}
-We model this mathematical problem in SymPy
+We start by modeling this mathematical problem in SymPy without statistics
 
 \begin{lstlisting}
     # Symbols for position, velocity, angle, time, and gravity
@@ -44,11 +44,11 @@ To obtain numeric results for a particular set of values we can replace the symb
 x_f = \frac{250}{49} + \frac{50}{49} \sqrt{123} = 16.4189...
 \end{equation}
 
-The expression in Eqn. \ref{eqn:kinematics_symbolic} serves two purposes. Because it is a full description of the problem it can provide insight as to the relation of the variables to the result. It also serves as a staging ground to produce the numeric solution in Eqn. \ref{eqn:kinematics_numeric}. Once the mathematical model has been described no further conceptual work is necessary on the part of the programmer to produce numeric results. 
+The expression in Eqn. \ref{eqn:kinematics_symbolic} serves two purposes. Because it is a full symbolic description of the problem it can provide insight as to the relation of the variables to the result. Additionally it may serve as a staging ground to produce the numeric solution in Eqn. \ref{eqn:kinematics_numeric}. Once the mathematical model has been described no further conceptual work is necessary on the part of the programmer to produce numeric results. 
 
 \subsection{Adding Uncertainty}
 
-We now consider the statistical problem. Imagine that we are uncertain about the initial height of the cannon and that rather than knowing a precise value $y_0 = 10$ we instead had a distribution $y_0 \sim \N{10}{1}$. Due to this uncertainty we can no longer ask for the precise value of $x_f$ but may instead choose to ask for the expectation value, variance, or even the full distribution. 
+We now consider the statistical problem. Imagine that we are uncertain about the initial height of the cannon and that rather than knowing a precise value $y_0 = 10$ we instead suspect it is distributed normally with variance 1 $y_0 \sim \N{10}{1}$. Due to this uncertainty $x_f$ no longer has a precise value. Instead of asking for an exact number we may choose to ask for the expectation value, variance, or even the full distribution. 
 
 Traditionally this is done either through painstaking algebra (for simple cases) or by building external codes to sample using monte carlo methods. We now show how SymPy can be used to model this statistical problem and provide solutions. 
 
@@ -57,16 +57,16 @@ Rather than defining $y_0$ as a symbolic or numeric variable, we will declare it
 >>> y0 = Normal(10,1)
 \end{lstlisting}
 
-This variable acts in all ways like a SymPy symbol and so it is still possible to form expressions like Eqn. \ref{eqn:kinematics_symbolic}. Random variables become special when statistical functions, such as the expectation operator, are used.
+This variable acts in all ways like a SymPy symbol and so we may still form the expression in Eqn. \ref{eqn:kinematics_symbolic}. Because this expression now contain random elements it itself is random and is active under our statistical operators $P,E, ...$.
 
 \begin{lstlisting}
 >>> E(xf)
 \end{lstlisting}
 
-This follows standard theory to produce the following integral
+This code follows standard theory to generate the following integral
 $$\int_{-\infty}^{\infty} \frac{25}{49} \frac{\left(\sqrt{\frac{98}{5} x_{1} + 50} + 5 \sqrt{2}\right) e^{- \frac{1}{2} \left(x_{1} -10\right)^{2}}}{\sqrt{\pi}}\, dx_{1}$$
 
-This integral is challenging and the solution includes special functions. Fortunately algorithmic tools are capable of producing exact analytic solutions. 
+This integral is challenging and the solution includes special functions. Fortunately algorithmic tools are capable of producing exact analytic solutions. Numeric equivalents are presented below in place of full expressions which are omitted in the interests of space and clarity. 
 
 $$\textrm{E}(x_f) = 16.4099...$$
 $$\textrm{var}(x_f) = .2044...$$
@@ -77,7 +77,7 @@ In principle we could ask for the full analytically computed density of $x_f$ al
 
 Imagine now a more difficult problem where more of the variables in our model were uncertain
 \begin{lstlisting}
->>> v = Uniform(9,11.5)
+>>> v = Uniform(9,11.5) # Uniformly distributed between 9 and 11.5
 >>> theta = Normal(pi/4, pi/20)
 \end{lstlisting}
 
@@ -89,7 +89,7 @@ Solving the resultant integral however is substantially more challenging.
 
 For situations like these exact solutions are often infeasible and Monte Carlo codes are built around the problem. Because this problem statement is now cleanly separated from the solution code it was trivial to connect a simple sampling engine onto SymPy stats allowing all such queries to be approximated using a simple syntax
 \begin{lstlisting}
->>> P(theta>pi/4,  xf>16, samples=10000)
+>>> P(theta>pi/4,  xf>16, numsamples=10000)
 0.3428
 \end{lstlisting}
 
