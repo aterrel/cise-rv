@@ -1,10 +1,12 @@
 \section{Example 1 - Dice}
 %SymPy is a symbolic algebra system embedded in the Python programming language.
 
-Formally random variables are functions on probability spaces.  Practically, they represent ranges of values, each with a certain probability.  In
-addition to numeric variables like $x = 3$, SymPy can also manipulate symbolic
-variables, $x = $Symbol$('x')$. SymPy now includes a random variable type which
-we can use to represent uncertainity in variables.  For example we can declare and ask questions about a simple six--sided dice.
+Formally random variables are functions on probability spaces.  Practically,
+they represent ranges of values, each with a certain probability.  In addition
+to numeric variables like $x = 3$, SymPy can also manipulate symbolic
+variables, $x = \text{Symbol}('x')$. SymPy now includes a random variable type
+which is used to represent uncertainity in variables.  For example, one can
+declare and ask questions about a set of simple six--sided dice.
 
 \begin{lstlisting}
 >>> from sympy.stats import *
@@ -27,8 +29,10 @@ handicap, you can add an integer to it.
 \end{lstlisting}
 
 The difference between a random variable and a normal symbol can be seen when
-using the statistical operators described in Table~\ref{tab:stat_ops}. 
-Here SymPy turns statistical expressions like {\tt E(2*X + 4)} into a computed result. Additionally, one can compute statistics of the expression conditioned on additional knowledge as in Table~\ref{tab:cond_ops}.
+using the statistical operators described in Table~\ref{tab:stat_ops}.  Here
+SymPy turns statistical expressions like {\tt E(2*X + 4)} into a computed
+result. Additionally, one can compute statistics of the expression conditioned
+on additional knowledge as in Table~\ref{tab:cond_ops}.
 
 \begin{table}[h]
 \begin{tabular}{|lll|}
@@ -58,35 +62,11 @@ Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } -$> 5$ \\ \hline
 
 While we use the {\tt Die} function above as a syntactic sugar, one can
 represent any probability space by providing the density function, a map
-from value to probability summing to one. For example, we could define a fair coin as follows:
+from value to probability summing to one. For example, define a fair coin as follows:
 \begin{lstlisting}
 >>> density_map = {'heads':.5, 'tails':.5}
 >>> coin = FiniteRV(density_map)
 \end{lstlisting}
-
-Now that we know how to declare random variables and ask statistical questions we begin to leverage SymPy to model more complex statistical problems. We finish this section with more complex dice examples and follow up in the following sections with real-world examples.
-
-\comment{MR: I would be happy getting rid of these additional examples. I don't think they add much and I'd rather the reader move on.}
-
-\begin{lstlisting}
->>> X = Die(6)
->>> Y = Die(6)
-
->>> Density(X) # PDF of a six sided die
-{1: 1/6, 2: 1/6, 3: 1/6, 4: 1/6, 5: 1/6, 6: 1/6}
->>> Density(cos(pi*X)) # complex statements are fine too
-{-1: 1/2, 1: 1/2}
->>> E(X+Y) # expected value of the sum of two dice
-7
->>> P(Y>4)
-1/3
->>> P(X+Y>=10, X<=4) # conditional probability X+Y>=10 given that X<=4
-1/6
->>> Where(2*X < 8) # the set of values that twice a dice roll is less than
-8
-Domain: Or(die4 == 1, die4 == 2, die4 == 3)
-\end{lstlisting}
-
 
 By introducing a random variable type into the SymPy algebraic system, we have
 created a language for modeling and querying symbolic statistical systems.

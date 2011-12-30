@@ -20,7 +20,7 @@ with a normal random variable:
 \end{lstlisting}
 
 As in the last section, we may ask statistical questions such as ``What is the
-probability that the temprature is greater than 33C?'' ($P(T>33)$). Such
+probability that the temperature is greater than 33C?'' ($P(T>33)$). Such
 questions produce integral expressions which are then solved using the SymPy
 integration engine to produce numeric results.
 \begin{eqnarray*}
@@ -30,9 +30,9 @@ P(T>33) & = & \int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x_{3} -3
 \end{eqnarray*}
 
 Unsatisfied with this single estimate of the temperature, we want to update the
-model with data measured with a thermometer. The thermometer is difficult to
-read however (the lines are spaced closely together), so our observations will
-include some noise.
+model with measurements from a thermometer. However, the thermometer is
+difficult to read, because the lines are spaced closely together.  This means
+our observations will include some noise, which we include in our model below:
 
 \begin{lstlisting}
 >>> noise = Normal(0, 1.5)
@@ -40,7 +40,7 @@ include some noise.
 \end{lstlisting}
 
 The thermometer measures a value of $26C$. We now have two pieces of
-information to model $T$: the measured data and our \textit{prior}
+information to model the temperature: the measured data and our \textit{prior}
 understanding. We plot them both in Fig. \ref{fig:DA_data}.
 
 \begin{figure}[ht]
