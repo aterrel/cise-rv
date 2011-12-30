@@ -1,2 +1,36 @@
 \subsection{Sidebar: Random Variable Implementation}
 
+While the operations in the examples may seem magic, we wanted to give a peek
+into the implementation to show they are in fact quite straight forward. SymPy
+uses fairly general expression trees that are operated on by the various
+functions to produce new trees.  To add a domain specific symbol, one needs to
+do only a few things:
+
+\begin{enumerate}
+\item Create a class inheriting form the {\tt Symbol} class. All non-symbols should
+  inherit from {\tt Basic} instead.
+\item Put all canonicalization of a symbol into the {\tt \_\_new\_\_} method, this
+  insures that symbols can take advantage of SymPy's caching system.  Arguments
+  are stored in an {\tt args} array for functions to inspect.
+\item Add an special methods for printing, integration, and other common
+  operations.  These usually start with {\tt \_eval\_}, and if not provided will
+  be substituted with default representations.
+\end{enumerate}
+
+For random variables, first we create the abstract {\tt PSpace} class to hold
+information about the underlying probability space.  The {\tt RandomSymbol}
+class inherits from the {\tt Symbol} class and holds the implemented {\tt
+  PSpace} and the symbol name. Additionally, because we are adding and
+multiplying spaces, we create spaces to represent these operations.  Such
+situations are detected when an expression tree is pass to a statistical operation.
+
+The statistical operations are simply functions that act on expression looking
+for random variables.
+
+For our examples, we have underlying implementations of {\tt FinitePSpace} and
+{\tt ContinuousPSpace} but the possibilities are endless.
+
+While the project required several improvements to SymPy core, it does show the
+power of the simple language approach SymPy uses.  We include these
+implementation details in the hopes that the reader will be able to add her own
+domain specific symbols.
