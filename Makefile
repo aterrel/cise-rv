@@ -4,6 +4,9 @@ all: ${FILES}
 
 %.pdf: %.tex
 	pdflatex $<
+	bibtex $(subst .tex, , ${<})
+	pdflatex $<
+	pdflatex $<
 
 clean:
 	rm -f *.aux *.bbl *.log *.blg *.toc *.nav *.out *.snm *.vrb *~
