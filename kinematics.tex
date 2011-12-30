@@ -1,6 +1,12 @@
 \section{Example 3: Kinematics}
 
-Consider shooting a cannon ball off of a cliff with a certain muzzle velocity, angle, height, etc.... We ask where will the ball land below?
+For the final example, we give a more complete simulation from a classical
+kinematics.  Just as with simulation codes, one should start adding additional
+complexity to the models, slowly.  With symbolic statistics, one must take care
+where uncertainty is added or the result will be much more complex than
+necessary.
+
+Consider shooting a cannon ball off of a cliff. We ask where will the ball land below?
 
 \begin{figure}[ht]
 \vspace{-0pt}
@@ -11,11 +17,11 @@ Consider shooting a cannon ball off of a cliff with a certain muzzle velocity, a
 \label{fig:kinematics}
 \vspace{00pt}
 \end{figure}
-We start by modeling this mathematical problem in SymPy without statistics
+We start by modeling this mathematical problem in SymPy without statistics:
 
 \begin{lstlisting}
     # Symbols for position, velocity, angle, time, and gravity
-    >>> x0, y0, yf, v, theta, t, g = symbols('x0 y0 y_f v theta t g') 
+    >>> x0, y0, yf, v, theta, t, g = symbols('x0 y0 yf v theta t g')
     # x and y positions as a function of time
     >>> x = x0 + v*cos(theta)*t
     >>> y = y0 + v*sin(theta)*t + g/2*t**2
@@ -24,40 +30,64 @@ We start by modeling this mathematical problem in SymPy without statistics
     # Final x value of cannon ball on impact
     >>> xf = x0 + v*cos(theta)*t_impact
 \end{lstlisting}
-This code yields the following solution
+This code yields the following symbolic solution:
 
 \begin{equation}
 \label{eqn:kinematics_symbolic}
 x_f = x_{0} - \frac{v \left(v \sin{\left (\theta \right )} + \sqrt{- 2 g y_{0} + 2 g y_f + v^{2} \sin^{2}{\left (\theta \right )}}\right) \cos{\left (\theta \right )}}{g}
 \end{equation}
 
-To obtain numeric results for a particular set of values we can replace the symbolic variables, $x_0, y_0, y_f, v, \theta, g$ with numeric ones
+To obtain numeric results for a particular set of values, we can replace the symbolic variables, $x_0, y_0, y_f, v, \theta, g$ with numeric ones:
 
 \begin{lstlisting}
 >>> g = -9.8
 >>> v, theta = 10, pi/4
 >>> x0, y0, yf = 0, 10, 0
+>>> xf_num = xf.subs({ 'g': -9.8,
+           'v': 10, 'theta': pi/4, 'x0': 0,
+           'y0': 10, 'yf': 0} )
+>>> xf_num.evalf()
 \end{lstlisting}
 
 \begin{equation}
 \label{eqn:kinematics_numeric}
-x_f = \frac{250}{49} + \frac{50}{49} \sqrt{123} = 16.4189...
+x_f = \frac{250}{49} + \frac{50}{49} \sqrt{123} = 16.4189
 \end{equation}
 
-The expression in Eqn. \ref{eqn:kinematics_symbolic} serves two purposes. Because it is a full symbolic description of the problem it can provide insight as to the relation of the variables to the result. Additionally it may serve as a staging ground to produce the numeric solution in Eqn. \ref{eqn:kinematics_numeric}. Once the mathematical model has been described no further conceptual work is necessary on the part of the programmer to produce numeric results. 
+The expression in Eqn. \ref{eqn:kinematics_symbolic} is less appealing to the
+naked eye since it is hard to visualize its meaning but it serves two
+purposes. Because it is a full symbolic description of the problem, it can
+provide insight as to the relation of the variables to the
+result. Additionally, it serves as a staging ground to produce many numeric
+solutions such as the one in Eqn. \ref{eqn:kinematics_numeric}. Once the
+mathematical model has been described no further conceptual work is necessary
+on the part of the programmer to produce numeric results.
 
 \subsection{Adding Uncertainty}
 
-We now consider the statistical problem. Imagine that we are uncertain about the initial height of the cannon and that rather than knowing a precise value $y_0 = 10$ we instead suspect it is distributed normally with variance 1 $y_0 \sim \N{10}{1}$. Due to this uncertainty $x_f$ no longer has a precise value. Instead of asking for an exact number we may choose to ask for the expectation value, variance, or even the full distribution. 
+We now consider the statistical problem. Imagine that we are uncertain about
+the initial height of the cannon. Rather than knowing a precise value $y_0 =
+10$, we suspect it is distributed normally with variance 1 $y_0 \sim
+\N{10}{1}$. Due to this uncertainty $x_f$ no longer has a precise
+value. Instead of asking for an exact number, we ask for the
+expectation value, variance, or even the full distribution.
 
-Traditionally this is done either through painstaking algebra (for simple cases) or by building external codes to sample using monte carlo methods. We now show how SymPy can be used to model this statistical problem and provide solutions. 
+Traditionally, this is done either through painstaking algebra (for simple
+cases) or by building external codes to sample using Monte Carlo methods. We
+now show how SymPy can be used to model this statistical problem and provide
+solutions.
 
-Rather than defining $y_0$ as a symbolic or numeric variable, we will declare it to be a random variable distributed normally with mean 10 and standard deviation 1. 
+Rather than defining $y_0$ as a symbolic or numeric variable, we will declare
+it to be a random variable distributed normally with mean 10 and standard
+deviation 1.
 \begin{lstlisting}
 >>> y0 = Normal(10,1)
 \end{lstlisting}
 
-This variable acts in all ways like a SymPy symbol and so we may still form the expression in Eqn. \ref{eqn:kinematics_symbolic}. Because this expression now contain random elements it itself is random and is active under our statistical operators $P,E, ...$.
+This variable acts in all ways like a SymPy symbol and so we may still form the
+expression in Eqn. \ref{eqn:kinematics_symbolic}. Because this expression now
+contain random elements, it itself is random and is active under our
+statistical operators.
 
 \begin{lstlisting}
 >>> E(xf)
@@ -66,12 +96,16 @@ This variable acts in all ways like a SymPy symbol and so we may still form the 
 This code follows standard theory to generate the following integral
 $$\int_{-\infty}^{\infty} \frac{25}{49} \frac{\left(\sqrt{\frac{98}{5} x_{1} + 50} + 5 \sqrt{2}\right) e^{- \frac{1}{2} \left(x_{1} -10\right)^{2}}}{\sqrt{\pi}}\, dx_{1}$$
 
-This integral is challenging and the solution includes special functions. Fortunately algorithmic tools are capable of producing exact analytic solutions. Numeric equivalents are presented below in place of full expressions which are omitted in the interests of space and clarity. 
+This integral is challenging and the solution includes special
+functions. Fortunately, algorithmic tools are capable of producing exact
+analytic solutions. Numeric equivalents are presented below in place of full
+expressions which are omitted in the interests of space and clarity.
 
 $$\textrm{E}(x_f) = 16.4099...$$
 $$\textrm{var}(x_f) = .2044...$$
 
-In principle we could ask for the full analytically computed density of $x_f$ although the complexity prohibits any meaningful insight. 
+In principle, we could ask for the full analytically computed density of $x_f$
+although the complexity prohibits any meaningful insight.
 
 \subsection{Dealing with Complexity}
 
@@ -81,15 +115,27 @@ Imagine now a more difficult problem where more of the variables in our model we
 >>> theta = Normal(pi/4, pi/20)
 \end{lstlisting}
 
-Our queries may also become more complex such as \textit{what is the probability that theta was greater than $\pi/4$ given that the ball landed past $x_f>16$?} , $P(\theta>\frac{\pi}{4} | x_f>16)$. Asking this question in SymPy is just as easy as the example above. 
+Our queries may also become more complex such as, \textit{What is the
+probability that theta was greater than $\pi/4$ given that the ball landed
+past $x_f>16$?} , $P(\theta>\frac{\pi}{4} | x_f>16)$. Asking this question in
+SymPy is just as easy as the example above:
 \begin{lstlisting}
 >>> P(theta>pi/4  ,  xf>16)
 \end{lstlisting}
-Solving the resultant integral however is substantially more challenging.
-
-For situations like these exact solutions are often infeasible and Monte Carlo codes are built around the problem. Because this problem statement is now cleanly separated from the solution code it was trivial to connect a simple sampling engine onto SymPy stats allowing all such queries to be approximated using a simple syntax
+Solving the resultant integral however is substantially more challenging. For
+situations like these exact solutions are often infeasible and Monte Carlo
+codes are built around the problem. Because this problem statement is now
+cleanly separated from the solution code, it is trivial to connect a simple
+sampling engine onto SymPy stats allowing all such queries to be approximated
+using a simple syntax
 \begin{lstlisting}
 >>> P(theta>pi/4,  xf>16, numsamples=10000)
 0.3428
 \end{lstlisting}
 
+This classic problem had demonstrated the iteration one takes in forming more
+complicated simulations that encapsulate the uncertainties from physical
+measurements. As in the previous example, all the mechanics behind the
+statistical operators have been incorporated in the symbolic language in
+SymPy.  This gives users a natural path from a model to a more complicated real
+world simulation.
