@@ -7,28 +7,26 @@ functions to produce new trees.  To add a domain specific symbol, one needs to
 do only a few things:
 
 \begin{enumerate}
-\item Create a class inheriting form the {\tt Symbol} class. All non-symbols should
-  inherit from {\tt Basic} instead.
+\item Create a class inheriting from the {\tt Symbol} class. 
 \item Put all canonicalization of a symbol into the {\tt \_\_new\_\_} method, this
   insures that symbols can take advantage of SymPy's caching system.  Arguments
   are stored in an {\tt args} array for functions to inspect.
-\item Add an special methods for printing, integration, and other common
+\item Add domain specific functions to a distinct module which manipulate SymPy expressions
+\item Add special methods for printing, integration, and other common
   operations.  These usually start with {\tt \_eval\_}, and if not provided will
   be substituted with default representations.
 \end{enumerate}
 
-For random variables, first we create the abstract {\tt PSpace} class to hold
-information about the underlying probability space.  The {\tt RandomSymbol}
-class inherits from the {\tt Symbol} class and holds the implemented {\tt
-  PSpace} and the symbol name. Additionally, because we are adding and
-multiplying spaces, we create spaces to represent these operations.  Such
-situations are detected when an expression tree is pass to a statistical operation.
+For random variables, we first create the abstract {\tt PSpace} class to hold
+information about underlying probability spaces.  The {\tt RandomSymbol}
+class inherits from the {\tt Symbol} class and represents the implemented {\tt
+  PSpace} within SymPy expressions.
+ 
+The statistical operators \code{P, E, Density, ...} inspect the expression tree, extract the active probability spaces represented within, and construct a new non-statistical expression to compute the desired quantity. 
 
-The statistical operations are simply functions that act on expression looking
-for random variables.
+In the case of continuous random variables the statistical operators turn a statistical expression (i.e. \code{P(T>33)}) into a non-statistical integral expression (i.e. $\int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x -30\right)^{2}}}{6 \sqrt{\pi}}\, dx $). For discrete random expressions (i.e. dice) are converted into iterators or summation expressions. Multivariate random variables form matrix expressions, etc.... 
 
-For our examples, we have underlying implementations of {\tt FinitePSpace} and
-{\tt ContinuousPSpace} but the possibilities are endless.
+In each case SymPy-Stats simply offloads all computational work onto other more specialized and powerful modules. This allows SymPy-Stats to leverage the power and continuous growth of the more mature core modules.
 
 While the project required several improvements to SymPy core, it does show the
 power of the simple language approach SymPy uses.  We include these

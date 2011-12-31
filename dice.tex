@@ -5,7 +5,7 @@ Formally random variables are functions on probability spaces.  Practically,
 they represent ranges of values, each with a certain probability.  In addition
 to numeric variables like $x = 3$, SymPy can also manipulate symbolic
 variables, $x = \text{Symbol}('x')$. SymPy now includes a random variable type
-which is used to represent uncertainity in variables.  For example, one can
+which is used to represent uncertainty in variables.  For example, one can
 declare and ask questions about a set of simple six--sided dice.
 
 \begin{lstlisting}
@@ -38,11 +38,11 @@ on additional knowledge as in Table~\ref{tab:cond_ops}.
 \begin{tabular}{|lll|}
 \hline
 Operators & SymPy function & example\\ \hline
-probability & {\tt P} & {\tt P(X > 3)}  -$> 1/2$\\ \hline
-expectation & {\tt E} & {\tt E(2*X)}  -$> 7$ \\ \hline
-variance & {\tt var} & {\tt var(X + 3)} -$> 35/12$\\ \hline
-density & {\tt var} & {\tt Density(2*X)}  -$> \{2: 1/6,\; 4: 1/6,\; 6: 1/6,$ \\
-            & & \phantom{Density(X+3)  -$> \{$ } $\quad 8: 1/6,\; 10: 1/6,\; 12: 1/6\}$ \\ \hline
+probability & {\tt P} & {\tt P(X > 3)}  $\rightarrow 1/2$\\ \hline
+expectation & {\tt E} & {\tt E(2*X)} $\rightarrow 7$ \\ \hline
+variance & {\tt var} & {\tt var(X + 3)} $\rightarrow 35/12$\\ \hline
+density & {\tt var} & {\tt Density(2*X)}  $\rightarrow \{2: 1/6,\; 4: 1/6,\; 6: 1/6,$ \\
+            & & \phantom{Density(X+3) $\rightarrow$} $\quad 8: 1/6,\; 10: 1/6,\; 12: 1/6\}$ \\ \hline
 \end{tabular}
 \label{tab:stat_ops}
 \caption{Operators over expressions using random variables}
@@ -52,9 +52,9 @@ density & {\tt var} & {\tt Density(2*X)}  -$> \{2: 1/6,\; 4: 1/6,\; 6: 1/6,$ \\
 \begin{tabular}{|lll|}
 \hline
 Explanation & SymPy function & example\\ \hline
-Conditional random variable & {\tt Given} & {\tt Xp = Given(X, X < 3)} \\ \hline
-Conditional density & {\tt Density} & {\tt Density(X, X > 3) } -$> \{4: 1/3,\; 5: 1/3,\; 6: 1/3\}$ \\ \hline
-Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } -$> 5$ \\ \hline
+Conditional random variable & {\tt Given} & {\tt X2 = Given(X, X < 3)} \\ \hline
+Conditional density & {\tt Density} & {\tt Density(X, X > 3) } $\rightarrow \{4: 1/3,\; 5: 1/3,\; 6: 1/3\}$ \\ \hline
+Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } $\rightarrow 5$ \\ \hline
 \end{tabular}
 \label{tab:cond_ops}
 \caption{Conditional operators over random expressions}
@@ -62,7 +62,7 @@ Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } -$> 5$ \\ \hline
 
 While we use the {\tt Die} function above as a syntactic sugar, one can
 represent any probability space by providing the density function, a map
-from value to probability summing to one. For example, define a fair coin as follows:
+from value to probability summing to one. For example, we define a fair coin as follows:
 \begin{lstlisting}
 >>> density_map = {'heads':.5, 'tails':.5}
 >>> coin = FiniteRV(density_map)
@@ -70,6 +70,6 @@ from value to probability summing to one. For example, define a fair coin as fol
 
 By introducing a random variable type into the SymPy algebraic system, we have
 created a language for modeling and querying symbolic statistical systems.
-While these simple examples using dice are minimal, they are the basis for more
-sophisticated examples.  Even with these simple operations, modeling discrete
-systems become a simple readable process.
+While these simple examples using dice are minimal, they form the basis for more
+sophisticated examples.  These simple operations allow us to model statistical
+systems in a readable and intuitive manner.

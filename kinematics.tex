@@ -1,12 +1,10 @@
 \section{Example 3: Kinematics}
 
 For the final example, we give a more complete simulation from a classical
-kinematics.  Just as with simulation codes, one should start adding additional
-complexity to the models, slowly.  With symbolic statistics, one must take care
-where uncertainty is added or the result will be much more complex than
-necessary.
+kinematics.  This example is selected both because it is familiar to the reader and because it demonstrates what happens when the systems we model increase in complexity.  
 
 Consider shooting a cannon ball off of a cliff. We ask where will the ball land below?
+We start by modeling this mathematical problem in SymPy without statistics:
 
 \begin{figure}[ht]
 \vspace{-0pt}
@@ -17,7 +15,6 @@ Consider shooting a cannon ball off of a cliff. We ask where will the ball land 
 \label{fig:kinematics}
 \vspace{00pt}
 \end{figure}
-We start by modeling this mathematical problem in SymPy without statistics:
 
 \begin{lstlisting}
     # Symbols for position, velocity, angle, time, and gravity
@@ -40,13 +37,9 @@ x_f = x_{0} - \frac{v \left(v \sin{\left (\theta \right )} + \sqrt{- 2 g y_{0} +
 To obtain numeric results for a particular set of values, we can replace the symbolic variables, $x_0, y_0, y_f, v, \theta, g$ with numeric ones:
 
 \begin{lstlisting}
->>> g = -9.8
->>> v, theta = 10, pi/4
->>> x0, y0, yf = 0, 10, 0
->>> xf_num = xf.subs({ 'g': -9.8,
-           'v': 10, 'theta': pi/4, 'x0': 0,
-           'y0': 10, 'yf': 0} )
->>> xf_num.evalf()
+# Substitute out symbolic variables in xf for numeric values
+>>> xf_num = xf.subs({ g: -9.8, v: 10, theta: pi/4, 
+                       x0: 0, y0: 10, yf: 0})
 \end{lstlisting}
 
 \begin{equation}
@@ -65,11 +58,11 @@ on the part of the programmer to produce numeric results.
 
 \subsection{Adding Uncertainty}
 
-We now consider the statistical problem. Imagine that we are uncertain about
-the initial height of the cannon. Rather than knowing a precise value $y_0 =
-10$, we suspect it is distributed normally with variance 1 $y_0 \sim
-\N{10}{1}$. Due to this uncertainty $x_f$ no longer has a precise
-value. Instead of asking for an exact number, we ask for the
+We now consider the statistical problem. Imagine first that we are uncertain
+about the initial height of the cannon. Rather than knowing the precise value
+$y_0 = 10$, we suspect it is distributed normally with standard deviation 1, 
+$y_0 \sim \N{10}{1}$. Due to this uncertainty $x_f$ no longer has a precise
+value. Instead of asking for an exact number, we may ask for the
 expectation value, variance, or even the full distribution.
 
 Traditionally, this is done either through painstaking algebra (for simple
@@ -77,7 +70,7 @@ cases) or by building external codes to sample using Monte Carlo methods. We
 now show how SymPy can be used to model this statistical problem and provide
 solutions.
 
-Rather than defining $y_0$ as a symbolic or numeric variable, we will declare
+Rather than defining $y_0$ as a symbolic or numeric variable, we declare
 it to be a random variable distributed normally with mean 10 and standard
 deviation 1.
 \begin{lstlisting}
@@ -85,9 +78,8 @@ deviation 1.
 \end{lstlisting}
 
 This variable acts in all ways like a SymPy symbol and so we may still form the
-expression in Eqn. \ref{eqn:kinematics_symbolic}. Because this expression now
-contain random elements, it itself is random and is active under our
-statistical operators.
+symbolic expression in Eqn. \ref{eqn:kinematics_symbolic}. 
+Because this expression now contains random elements, it itself is random and is active under our statistical operators.
 
 \begin{lstlisting}
 >>> E(xf)
@@ -98,8 +90,7 @@ $$\int_{-\infty}^{\infty} \frac{25}{49} \frac{\left(\sqrt{\frac{98}{5} x_{1} + 5
 
 This integral is challenging and the solution includes special
 functions. Fortunately, algorithmic tools are capable of producing exact
-analytic solutions. Numeric equivalents are presented below in place of full
-expressions which are omitted in the interests of space and clarity.
+analytic solutions. The full solution is omitted here in the interests of space and clarity; numeric equivalents are presented below in their place. 
 
 $$\textrm{E}(x_f) = 16.4099...$$
 $$\textrm{var}(x_f) = .2044...$$
@@ -133,9 +124,4 @@ using a simple syntax
 0.3428
 \end{lstlisting}
 
-This classic problem had demonstrated the iteration one takes in forming more
-complicated simulations that encapsulate the uncertainties from physical
-measurements. As in the previous example, all the mechanics behind the
-statistical operators have been incorporated in the symbolic language in
-SymPy.  This gives users a natural path from a model to a more complicated real
-world simulation.
+The path to solution presented here is typical in a lab environment. First a mathematical model is built, then initial numeric results are computed and finally errors, uncertainty and statistics are addressed. The work presented here shows how a computer algebra system that includes symbolic statistics can facilitate this process in a real-world setting.
