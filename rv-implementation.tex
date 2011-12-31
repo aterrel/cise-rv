@@ -20,13 +20,11 @@ do only a few things:
 For random variables, we first create the abstract {\tt PSpace} class to hold
 information about underlying probability spaces.  The {\tt RandomSymbol}
 class inherits from the {\tt Symbol} class and represents the implemented {\tt
-  PSpace} within SymPy expressions.
- 
+  PSpace} within SymPy expressions. 
 The statistical operators \code{P, E, Density, ...} inspect the expression tree, extract the active probability spaces represented within, and construct a new non-statistical expression to compute the desired quantity. 
 
-In the case of continuous random variables the statistical operators turn a statistical expression (i.e. \code{P(T>33)}) into a non-statistical integral expression (i.e. $\int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x -30\right)^{2}}}{6 \sqrt{\pi}}\, dx $). For discrete random expressions (i.e. dice) are converted into iterators or summation expressions. Multivariate random variables form matrix expressions, etc.... 
-
-In each case SymPy-Stats simply offloads all computational work onto other more specialized and powerful modules. This allows SymPy-Stats to leverage the power and continuous growth of the more mature core modules.
+In the case of continuous random variables the statistical operators turn a statistical expression (i.e. \code{P(T>33)}) into a non-statistical integral expression (i.e. $\int_{33}^{\infty} \frac{\sqrt{2} e^{- \frac{1}{18} \left(x -30\right)^{2}}}{6 \sqrt{\pi}}\, dx $). For discrete random expressions (i.e. dice) form iterators or summation expressions. Multivariate random variables form matrix expressions, etc....
+In each case SymPy-Stats offloads all computational work onto other more specialized and powerful modules. This allows SymPy-Stats to leverage the power and continuous growth of the more mature core modules.
 
 While the project required several improvements to SymPy core, it does show the
 power of the simple language approach SymPy uses.  We include these
