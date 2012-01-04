@@ -1,6 +1,6 @@
 \section{Example 2: Data Assimilation}
 
-In the last section we used random variables in simple examples involving
+We just saw how to use random variables in simple examples involving
 discrete random variables, in particular six sided dice. These problems were
 solved internally by iteration as done by Erwig et al \cite{Erwig2006}. In this
 section, we consider continuous random variables. Instead of iterating through
@@ -8,7 +8,7 @@ the continuum of possible values, we generate and solve integral expressions.
  While the backend mechanics have been completely changed, the
 method of setting up the statistical problem remains unchanged. This is an
 advantage of integrating uncertainty in the language, a theme upon which we
-will elaborate in the following sections.
+will continue to elaborate throughout the article.
 
 Consider the problem of data assimilation. On a hot summer day, one might guess
 the temperature outside to be about $30C$. The uncertainty of this guess can be
@@ -79,4 +79,4 @@ e^{-\frac{1}{18} \left(x-30\right)^{2}}$
 \end{figure}
 
 This is a classic result in data assimilation. It is important to note that
-the rules for this particular example of data assimilation are not explicitly written into SymPy. Rather the fundamental rules which are coded in SymPy cause this and many other classical results to develop naturally.
+the rules for this particular example of data assimilation are not explicitly written into SymPy. Rather the fundamental rules of Bayesian statistics are coded into SymPy and these rules cause this and many other classical results to develop naturally.

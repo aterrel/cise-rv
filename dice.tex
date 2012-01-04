@@ -44,8 +44,8 @@ variance & {\tt var} & {\tt var(X + 3)} $\rightarrow 35/12$\\ \hline
 density & {\tt Density} & {\tt Density(2*X)}  $\rightarrow \{2: 1/6,\; 4: 1/6,\; 6: 1/6,$ \\
             & & \phantom{Density(X+3) $\rightarrow$} $\quad 8: 1/6,\; 10: 1/6,\; 12: 1/6\}$ \\ \hline
 \end{tabular}
-\label{tab:stat_ops}
 \caption{Operators over expressions using random variables}
+\label{tab:stat_ops}
 \end{table}
 
 \begin{table}[h]
@@ -56,8 +56,8 @@ Conditional random variable & {\tt Given} & {\tt X2 = Given(X, X < 3)} \\ \hline
 Conditional density & {\tt Density} & {\tt Density(X, X > 3) } $\rightarrow \{4: 1/3,\; 5: 1/3,\; 6: 1/3\}$ \\ \hline
 Conditional expectation  & {\tt E} & {\tt E(X, X > 3) } $\rightarrow 5$ \\ \hline
 \end{tabular}
-\label{tab:cond_ops}
 \caption{Conditional operators over random expressions}
+\label{tab:cond_ops}
 \end{table}
 
 While we use the {\tt Die} function above as a syntactic sugar, one can
