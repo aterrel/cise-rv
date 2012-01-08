@@ -31,8 +31,7 @@ handicap, you can add an integer to it.
 The difference between a random variable and a normal symbol can be seen when
 using the statistical operators described in Table~\ref{tab:stat_ops}.  Here
 SymPy turns statistical expressions like {\tt E(2*X + 4)} into a computed
-result. Additionally, one can compute statistics of the expression conditioned
-on additional knowledge as in Table~\ref{tab:cond_ops}.
+result. 
 
 \begin{table}[h]
 \begin{tabular}{|lll|}
@@ -47,6 +46,19 @@ density & {\tt Density} & {\tt Density(2*X)}  $\rightarrow \{2: 1/6,\; 4: 1/6,\;
 \caption{Operators over expressions using random variables}
 \label{tab:stat_ops}
 \end{table}
+
+
+Additionally, one can compute statistics of the expressions conditioned
+on additional knowledge such as \textit{the probability that $X > 3$ given that $X+Y \ge 8$}. This is represented in mathematical syntax as $P(X>3 \;|\; X+Y \ge 8)$ or in SymPy syntax as {\tt P(X>3, X+Y>=8)}. These and all other computations in this module obey the fundamental rules of Bayesian statistics. For example we could check Bayes' rule on this example with the following code
+\begin{lstlisting}
+>>> A = X > 3
+>>> B = X+Y >= 10
+>>> P(B, A) == P(A, B)*P(B)/P(A)
+True
+\end{lstlisting}
+
+%as in Table~\ref{tab:cond_ops}. 
+
 
 \begin{table}[h]
 \begin{tabular}{|lll|}
