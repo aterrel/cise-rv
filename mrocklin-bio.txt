@@ -1,0 +1,1 @@
+Matthew Rocklin is a PhD student at the University of Chicago in computer science. His research focuses on scientific computing, numerical methods, and uncertainty quantification. Further information available at http://people.cs.uchicago.edu/~mrocklin 
