@@ -1,1 +1,3 @@
-Matthew Rocklin is a PhD student at the University of Chicago in computer science. His research focuses on scientific computing, numerical methods, and uncertainty quantification. Further information available at http://people.cs.uchicago.edu/~mrocklin 
+Matthew Rocklin is a PhD student at the University of Chicago in computer science. His research focuses on scientific computing, numerical methods, and uncertainty quantification. Further information available at http://people.cs.uchicago.edu/~mrocklin
+
+Andy R. Terrel is a Research Associate at Texas Advanced Computing Center at the University of texas at Austin. His research interests include scientific computing, parallel computing, domain-specific languages, and computational rheology. Terrel has a PhD in computer science from the University of Chicago. Contact him at aterrel@tacc.utexas.edu.
