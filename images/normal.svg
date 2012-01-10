@@ -1,0 +1,196 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with matplotlib (http://matplotlib.sourceforge.net/) -->
+<svg width="1127pt" height="432pt" viewBox="0 0 1127 432"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   id="svg1">
+<filter id="colorAdd"><feComposite in="SourceGraphic" in2="BackgroundImage" operator="arithmetic" k2="1" k3="1"/></filter>
+<g id="figure1">
+<g id="patch1">
+<path style="fill: #ffffff; stroke: #ffffff; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000"  d="M0.000000 432.000000L1127.700000 432.000000L1127.700000 0.000000
+L0.000000 0.000000z"/>
+</g>
+<g id="axes1">
+<g id="patch2">
+<path style="fill: #ffffff; opacity: 1.000000"  d="M140.962500 388.800000L1014.930000 388.800000L1014.930000 43.200000
+L140.962500 43.200000z"/>
+</g>
+<g id="line2d1">
+<defs>
+  <clipPath id="p005e5900a61b649f0f0a887ca721cdc6">
+<rect x="140.962500" y="43.200000" width="873.967500" height="345.600000"/>
+  </clipPath>
+</defs><path style="fill: none; stroke: #0000ff; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000" clip-path="url(#p005e5900a61b649f0f0a887ca721cdc6)" d="M140.962500 387.530925L157.584505 386.878905L171.581982 386.109928
+L183.829775 385.221997L195.202725 384.173262L205.700833 382.973326
+L215.324099 381.642283L224.072523 380.210371L231.946104 378.716746
+L239.819685 377.006019L247.693266 375.054721L254.692005 373.098419
+L261.690743 370.914734L268.689482 368.485337L274.813378 366.143428
+L280.937275 363.586620L287.061171 360.802435L293.185068 357.778575
+L299.308964 354.503046L305.432860 350.964310L311.556757 347.151432
+L317.680653 343.054245L323.804550 338.663521L329.928446 333.971145
+L336.052342 328.970300L342.176239 323.655645L348.300135 318.023504
+L354.424032 312.072042L360.547928 305.801446L366.671824 299.214088
+L372.795721 292.314684L378.919617 285.110438L385.918356 276.516459
+L392.917095 267.556250L399.915833 258.253623L407.789414 247.414814
+L416.537838 234.965262L426.161104 220.866966L438.408896 202.497293
+L469.028378 156.343262L477.776802 143.637408L485.650383 132.586838
+L492.649122 123.152315L498.773018 115.252862L504.896914 107.732504
+L510.145968 101.621348L515.395023 95.847358L520.644077 90.436000
+L525.018288 86.221042L529.392500 82.287982L533.766712 78.649292
+L538.140923 75.316613L542.515135 72.300690L546.889347 69.611314
+L550.388716 67.700866L553.888086 66.009065L557.387455 64.539480
+L560.886824 63.295220L564.386194 62.278927L567.885563 61.492762
+L571.384932 60.938400L574.884302 60.617025L578.383671 60.529322
+L581.883041 60.675480L585.382410 61.055186L588.881779 61.667629
+L592.381149 62.511502L595.880518 63.585008L599.379887 64.885865
+L602.879257 66.411314L606.378626 68.158129L609.877995 70.122629
+L613.377365 72.300690L617.751577 75.316613L622.125788 78.649292
+L626.500000 82.287982L630.874212 86.221042L635.248423 90.436000
+L639.622635 94.919612L644.871689 100.634900L650.120743 106.691678
+L655.369797 113.063569L661.493694 120.859244L667.617590 129.002053
+L674.616329 138.674776L682.489910 149.941924L692.113176 164.129242
+L705.235811 183.914403L728.856554 219.568164L739.354662 234.965262
+L748.103086 247.414814L755.976667 258.253623L763.850248 268.695537
+L770.848986 277.611170L777.847725 286.157937L784.846464 294.317411
+L790.970360 301.128283L797.094257 307.625514L803.218153 313.805072
+L809.342050 319.665227L815.465946 325.206386L821.589842 330.430930
+L827.713739 335.343028L833.837635 339.948462L839.961532 344.254439
+L846.085428 348.269409L852.209324 352.002886L858.333221 355.465275
+L864.457117 358.667698L870.581014 361.621840L876.704910 364.339795
+L882.828806 366.833925L889.827545 369.426332L896.826284 371.761418
+L903.825023 373.857707L910.823761 375.733381L918.697342 377.601808
+L926.570923 379.237619L935.319347 380.810372L944.067770 382.154112
+L953.691036 383.400566L964.189144 384.521672L975.562095 385.499086
+L987.809887 386.324435L1001.807365 387.037126L1014.930000 387.530925
+L1014.930000 387.530925"/>
+</g>
+<g id="matplotlib.axis1">
+<g id="xtick1">
+<g id="line2d2">
+<defs><path id="m30e32995789d870ad79a2e54c91cf9c6" d="M0.000000 0.000000L0.000000 -4.000000"/></defs>
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m30e32995789d870ad79a2e54c91cf9c6" x="140.962500" y="388.800000"/>
+</g></g>
+<g id="line2d3">
+<defs><path id="m9281cae24120827b11d5ea8a7ad3e96b" d="M0.000000 0.000000L0.000000 4.000000"/></defs>
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m9281cae24120827b11d5ea8a7ad3e96b" x="140.962500" y="43.200000"/>
+</g></g>
+</g>
+<g id="xtick2">
+<g id="line2d4">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m30e32995789d870ad79a2e54c91cf9c6" x="359.454375" y="388.800000"/>
+</g></g>
+<g id="line2d5">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m9281cae24120827b11d5ea8a7ad3e96b" x="359.454375" y="43.200000"/>
+</g></g>
+</g>
+<g id="xtick3">
+<g id="line2d6">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m30e32995789d870ad79a2e54c91cf9c6" x="577.946250" y="388.800000"/>
+</g></g>
+<g id="line2d7">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m9281cae24120827b11d5ea8a7ad3e96b" x="577.946250" y="43.200000"/>
+</g></g>
+</g>
+<g id="xtick4">
+<g id="line2d8">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m30e32995789d870ad79a2e54c91cf9c6" x="796.438125" y="388.800000"/>
+</g></g>
+<g id="line2d9">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m9281cae24120827b11d5ea8a7ad3e96b" x="796.438125" y="43.200000"/>
+</g></g>
+</g>
+<g id="xtick5">
+<g id="line2d10">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m30e32995789d870ad79a2e54c91cf9c6" x="1014.930000" y="388.800000"/>
+</g></g>
+<g id="line2d11">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m9281cae24120827b11d5ea8a7ad3e96b" x="1014.930000" y="43.200000"/>
+</g></g>
+</g>
+</g>
+<g id="matplotlib.axis2">
+<g id="ytick1">
+<g id="line2d12">
+<defs><path id="m3400efa6b1638b3fea9e19e898273957" d="M0.000000 0.000000L4.000000 0.000000"/></defs>
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="388.800000"/>
+</g></g>
+<g id="line2d13">
+<defs><path id="m20b58b2501143cb5e0a5e8f1ef6f1643" d="M0.000000 0.000000L-4.000000 0.000000"/></defs>
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="388.800000"/>
+</g></g>
+</g>
+<g id="ytick2">
+<g id="line2d14">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="339.428571"/>
+</g></g>
+<g id="line2d15">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="339.428571"/>
+</g></g>
+</g>
+<g id="ytick3">
+<g id="line2d16">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="290.057143"/>
+</g></g>
+<g id="line2d17">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="290.057143"/>
+</g></g>
+</g>
+<g id="ytick4">
+<g id="line2d18">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="240.685714"/>
+</g></g>
+<g id="line2d19">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="240.685714"/>
+</g></g>
+</g>
+<g id="ytick5">
+<g id="line2d20">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="191.314286"/>
+</g></g>
+<g id="line2d21">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="191.314286"/>
+</g></g>
+</g>
+<g id="ytick6">
+<g id="line2d22">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="141.942857"/>
+</g></g>
+<g id="line2d23">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="141.942857"/>
+</g></g>
+</g>
+<g id="ytick7">
+<g id="line2d24">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="92.571429"/>
+</g></g>
+<g id="line2d25">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="92.571429"/>
+</g></g>
+</g>
+<g id="ytick8">
+<g id="line2d26">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m3400efa6b1638b3fea9e19e898273957" x="140.962500" y="43.200000"/>
+</g></g>
+<g id="line2d27">
+<g ><use style="fill: none; stroke: #000000; stroke-width: 0.500000; stroke-linejoin: round; stroke-linecap: butt;  opacity: 1.000000" xlink:href="#m20b58b2501143cb5e0a5e8f1ef6f1643" x="1014.930000" y="43.200000"/>
+</g></g>
+</g>
+</g>
+<g id="patch3">
+<path style="fill: none; stroke: #000000; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000"  d="M140.962500 43.200000L1014.930000 43.200000"/>
+</g>
+<g id="patch4">
+<path style="fill: none; stroke: #000000; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000"  d="M1014.930000 388.800000L1014.930000 43.200000"/>
+</g>
+<g id="patch5">
+<path style="fill: none; stroke: #000000; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000"  d="M140.962500 388.800000L1014.930000 388.800000"/>
+</g>
+<g id="patch6">
+<path style="fill: none; stroke: #000000; stroke-width: 1.000000; stroke-linejoin: round; stroke-linecap: square;  opacity: 1.000000"  d="M140.962500 388.800000L140.962500 43.200000"/>
+</g>
+</g>
+</g>
+</svg>

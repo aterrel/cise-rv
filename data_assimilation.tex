@@ -6,7 +6,7 @@ solved internally by iteration as done by Erwig et al \cite{Erwig2006}. In this
 section, we consider continuous random variables. Instead of iterating through
 the continuum of possible values, we generate and solve integral expressions.
  While the backend mechanics have been completely changed, the
-method of setting up the statistical problem remains unchanged. This is an
+method of setting up the statistical problem remains the same. This is an
 advantage of integrating uncertainty in the language, a theme upon which we
 will continue to elaborate throughout the article.
 
@@ -54,6 +54,16 @@ understanding ($30\pm3C$). We plot them both in Fig. \ref{fig:DA_data}.
 \end{figure}
 
 After this measurement is made how should the final estimate of the temperature change? We have the original estimate, $30 \pm 3C$, and the new measurement $26 \pm 1.5C$. One could select the thermometer's reading because it is more precise but this entirely neglects the original information which still holds some value. It would be best to cleanly assimilate the new bit of data $(26C \pm 1.5C)$ into the prior understanding $(30C \pm 3C)$
+
+\begin{figure}[ht]
+\vspace{-0pt}
+\centering
+\includegraphics[width=.3\textwidth]{images/temperature_given}
+\vspace{-0pt}
+\caption{The distribution of the observation depends both on the distribution of temperature (y-axis) and the distribution of noise (x-axis). Together these form a 2-d joint normal distribution (center). The condition that the observation (T+noise) equals 26 selects a line (lower left) from the space of possibilities. T\_posterior is distributed according to the probability density along this line projected onto the temperature axis (lower left).}
+\label{fig:temperature_given}
+\vspace{00pt}
+\end{figure}
 
 This is the problem of Data Assimilation. We want to assimilate a new
 measurement (data) into our previous understanding (prior) to form a new and
